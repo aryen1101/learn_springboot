@@ -7,41 +7,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api")
 public class ProductController {
 
     @Autowired
     ProductService service;
 
-    @GetMapping
+    @GetMapping("/products")
     public List<Product> getProducts() {
-        return service.getProducts();
-    }
-
-    @GetMapping("/{prodId}")
-    public Product getProductById(@PathVariable int prodId) {
-        return service.getProductById(prodId);
-
+        return service.getAllProducts();
     }
 
 
-    @PostMapping
-    public void addProduct(@RequestBody Product product) {
-        service.addProduct(product);
-    }
-
-    @PutMapping
-    public void updateProduct(@RequestBody Product product) {
-        service.updateProduct(product);
-
-    }
-
-    @DeleteMapping("/{prodId}")
-    public void deleteProduct(@PathVariable int prodId){
-        service.deleteProduct(prodId);
 
 
-
-    }
 }

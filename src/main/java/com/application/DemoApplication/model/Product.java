@@ -1,19 +1,32 @@
 package com.application.DemoApplication.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.stereotype.Component;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Product {
 
-    private int prodId;
-    private String prodName;
-    private int price;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    public Product(int prodId, String prodName, int price) {
-        this.prodName = prodName;
-        this.price = price;
-        this.prodId = prodId;
-    }
+    private String name;
+    private String description;
+    private String brand;
+    private BigDecimal price;
+    private String category;
+    private Date release_date;
+    private int quantity;
+
 }
