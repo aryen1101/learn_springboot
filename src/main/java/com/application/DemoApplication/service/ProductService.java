@@ -4,6 +4,7 @@ import com.application.DemoApplication.model.Product;
 import com.application.DemoApplication.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -43,6 +44,13 @@ public class ProductService {
 
     public void deleteProduct(int id) {
         repo.deleteById(id);
+    }
+
+    @Transactional(readOnly = true) //Database knows no INSERT / UPDATE / DELETE will happen hence faster execution
+    public List<Product> searchProducts(String keyword) {
+        System.out.println("SEARCH KEYWORD = [" + keyword + "]");
+        return repo.searchProduct(keyword);
+
     }
 }
 
