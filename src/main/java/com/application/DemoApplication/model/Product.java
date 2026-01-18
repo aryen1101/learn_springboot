@@ -1,12 +1,11 @@
 package com.application.DemoApplication.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -26,7 +25,16 @@ public class Product {
     private String brand;
     private BigDecimal price;
     private String category;
-    private Date release_date;
-    private int quantity;
+
+    private Date releaseDate;
+    private int stockQuantity;
+    private boolean productAvailable;
+
+    private String imageName;
+    private String imageType;
+
+    @Lob
+    private byte[] imageData;
+
 
 }
